@@ -23,7 +23,7 @@ with models.DAG(
         return 1
 
     def greeting():
-        print('Greetings from SpikeySales! Happy shopping. ')
+        print('Greetings from SpikeySales! Happy shopping.')
         return 'Greeting successfully printed.'
 
     hello_world_greeting = python_operator.PythonOperator(
