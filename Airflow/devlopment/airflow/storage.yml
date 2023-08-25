@@ -1,0 +1,61 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: dags-pv  # Sets PV's name
+  namespace: airflow
+  labels:
+    type: local  # Sets PV's type to local
+    app: airflow
+spec:
+  storageClassName: fast
+  capacity:
+    storage: 5Gi # Sets PV Volume
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/dags"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: dags-pvc  # Sets name of PVC
+  labels:
+    app: airflow
+spec:
+  storageClassName: fast
+  accessModes:
+    - ReadWriteMany  # Sets read and write access
+  resources:
+    requests:
+      storage: 5Gi  # Sets volume size
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: logs-pv  # Sets PV's name
+  namespace: airflow
+  labels:
+    type: local  # Sets PV's type to local
+    app: airflow
+spec:
+  storageClassName: fast
+  capacity:
+    storage: 5Gi # Sets PV Volume
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/logs"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: logs-pvc  # Sets name of PVC
+  labels:
+    app: airflow
+spec:
+  storageClassName: fast
+  accessModes:
+    - ReadWriteMany  # Sets read and write access
+  resources:
+    requests:
+      storage: 5Gi  # Sets volume size
