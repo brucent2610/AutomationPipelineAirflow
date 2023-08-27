@@ -1,6 +1,6 @@
 import datetime
 
-from airflow import models
+from airflow import DAG
 from airflow.operators import bash_operator
 from airflow.operators import python_operator
 from airflow.operators import dummy_operator
@@ -10,7 +10,7 @@ yesterday = datetime.datetime.combine(
     datetime.datetime.min.time())
 
 default_dag_args = {
-    'start_date': yesterday
+    'start_date': datetime.datetime(2023, 8, 25)
 }
 
 with models.DAG(
