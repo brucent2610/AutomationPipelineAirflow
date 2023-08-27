@@ -13,7 +13,7 @@ default_dag_args = {
     'start_date': datetime.datetime(2023, 8, 25)
 }
 
-with models.DAG(
+with DAG(
         'running_python_bash_and_dummy_operator',
         schedule_interval=datetime.timedelta(days=1),
         default_args=default_dag_args) as dag:
