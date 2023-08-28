@@ -8,7 +8,7 @@ from airflow.contrib.operators.bigquery_check_operator import BigQueryCheckOpera
 default_args = {
     'start_date': datetime(2023, 8, 25),
     'owner': 'Phong Nguyen',
-    'retries': 5,
+    'retries': 1,
     'retry_delay': timedelta(minutes=5),
 }
 
@@ -30,11 +30,12 @@ with DAG('tiki_cloud_data_lake_pipeline',
         destination_project_dataset_table = f'{project_id}:{staging_dataset}.products',
         schema_object = 'schema/schema.json',
         write_disposition='WRITE_TRUNCATE',
-        source_format = 'NEWLINE_DELIMITED_JSON'
+        source_format = 'NEWLINE_DELIMITED_JSON',
+        create_disposition="CREATE_IF_NEEDED"
     )
 
     check_us_cities_demo = BigQueryCheckOperator(
-        task_id = 'check_tiki_produces',
+        task_id = 'check_tiki_products',
         use_legacy_sql=False,
         sql = f'SELECT count(*) FROM `{project_id}.{staging_dataset}.products`'
     )
