@@ -19,7 +19,7 @@ gs_bucket = 'data-engineer-393307-cloud-data-lake'
 
 with DAG('tiki_cloud_data_lake_pipeline',
     schedule_interval=timedelta(days=1),
-    default_args=default_dag_args) as dag:
+    default_args=default_args) as dag:
 
     start_pipeline = DummyOperator(task_id = 'start_pipeline')
 
