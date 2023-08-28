@@ -23,9 +23,7 @@ with DAG('tiki_cloud_data_lake_pipeline',
     schedule_interval=datetime.timedelta(days=1),
     default_args=default_dag_args) as dag:
 
-    start_pipeline = DummyOperator(
-        task_id = 'start_pipeline'
-    )
+    start_pipeline = DummyOperator(task_id = 'start_pipeline')
 
     load_products = GoogleCloudStorageToBigQueryOperator(
         task_id = 'load_tiki_products',
@@ -43,13 +41,10 @@ with DAG('tiki_cloud_data_lake_pipeline',
         sql = f'SELECT count(*) FROM `{project_id}.{staging_dataset}.products`'
     )
 
-    loaded_data_to_staging = DummyOperator(
-        task_id = 'loaded_products_to_staging'
-    )
+    loaded_data_to_staging = DummyOperator(task_id = 'loaded_products_to_staging')
 
-    end = DummyOperator(
-        task_id='end_pipeline')
+    end_pipeline = DummyOperator(task_id='end_pipeline')
 
-    start_pipeline >> load_products >> check_us_cities_demo >> loaded_data_to_staging >> end
+    start_pipeline >> load_products >> check_us_cities_demo >> loaded_data_to_staging >> end_pipeline
 
     
