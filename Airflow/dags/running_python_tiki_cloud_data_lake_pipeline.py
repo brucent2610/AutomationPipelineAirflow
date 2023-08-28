@@ -1,5 +1,3 @@
-import datetime
-
 from airflow import DAG
 from airflow.contrib.operators.bigquery_operator import BigQueryOperator
 from airflow.operators.dummy_operator import DummyOperator
@@ -8,7 +6,7 @@ from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOper
 from airflow.contrib.operators.bigquery_check_operator import BigQueryCheckOperator
 
 default_args = {
-    'start_date': datetime.datetime(2023, 8, 25),
+    'start_date': datetime(2023, 8, 25),
     'owner': 'Phong Nguyen',
     'retries': 5,
     'retry_delay': timedelta(minutes=5),
@@ -20,7 +18,7 @@ production_dataset = 'ecommerce_tiki'
 gs_bucket = 'data-engineer-393307-cloud-data-lake'
 
 with DAG('tiki_cloud_data_lake_pipeline',
-    schedule_interval=datetime.timedelta(days=1),
+    schedule_interval=timedelta(days=1),
     default_args=default_dag_args) as dag:
 
     start_pipeline = DummyOperator(task_id = 'start_pipeline')
