@@ -37,6 +37,7 @@ with DAG('tiki_cloud_data_lake_pipeline',
     check_us_cities_demo = BigQueryCheckOperator(
         task_id = 'check_tiki_products',
         use_legacy_sql=False,
+        location="asia-northeast1",
         sql = f'SELECT count(*) FROM `{project_id}.{staging_dataset}.products`'
     )
 
