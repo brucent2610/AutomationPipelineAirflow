@@ -43,8 +43,19 @@ with DAG('tiki_cloud_data_lake_pipeline',
 
     loaded_data_to_staging = DummyOperator(task_id = 'loaded_tiki_products_to_staging')
 
+    create_tiki_transformed_products_data = BigQueryOperator(
+        task_id = 'create_tiki_transformed_products_data',
+        use_legacy_sql = False,
+        params = {
+            'project_id': project_id,
+            'staging_dataset': staging_dataset,
+            'table': "products"
+        },
+        sql = './sql/D_TIKI.sql'
+    )
+
     end_pipeline = DummyOperator(task_id='end_pipeline')
 
-    start_pipeline >> load_products >> check_us_cities_demo >> loaded_data_to_staging >> end_pipeline
+    start_pipeline >> load_products >> check_us_cities_demo >> loaded_data_to_staging >> create_tiki_transformed_products_data >> end_pipeline
 
     
