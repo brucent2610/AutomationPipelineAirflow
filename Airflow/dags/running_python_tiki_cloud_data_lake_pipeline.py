@@ -51,7 +51,7 @@ with DAG('tiki_cloud_data_lake_pipeline',
             'staging_dataset': staging_dataset,
             'table': "products"
         },
-        sql = './sql/D_TIKI.sql'
+        sql = './sql/R_TIKI.sql'
     )
 
     end_pipeline = DummyOperator(task_id='end_pipeline')
