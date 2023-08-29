@@ -26,7 +26,7 @@ with DAG('tiki_cloud_data_lake_pipeline',
     load_products = GoogleCloudStorageToBigQueryOperator(
         task_id = 'load_tiki_products',
         bucket = gs_bucket,
-        source_objects = ['products-2023-08-09-converted.json'],
+        source_objects = ['products-2023-08-02-converted.json'],
         destination_project_dataset_table = f'{project_id}:{staging_dataset}.products',
         schema_object = 'schema/schema.json',
         write_disposition='WRITE_TRUNCATE',
