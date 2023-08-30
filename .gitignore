@@ -1,8 +1,1 @@
-Airflow Webserver:     kubectl port-forward svc/airflow-webserver 8080:8080 --namespace airflow
-Default Webserver (Airflow UI) Login credentials:
-    username: admin
-    password: }5S\bqDdt%pxj?_H
-Default Postgres connection credentials:
-    username: postgres
-    password: postgres
-    port: 5432
+.env
