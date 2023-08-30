@@ -27,6 +27,12 @@
 
 # How to use
 
+# Issues
+- Run Helm quota issue SSD storage
+- Run manually many issues happen
+- airflows-scheduler pods pending not enough resources to use (The scheduler does not appear to be running)
+- Can not git sync 
+- Some Disk still keep need to remove and change storage class
 
 # Result data in DataStudio
 

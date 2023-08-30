@@ -8,7 +8,7 @@ from airflow.contrib.operators.bigquery_check_operator import BigQueryCheckOpera
 default_args = {
     'start_date': datetime(2023, 8, 25),
     'owner': 'Phong Nguyen',
-    'retries': 1,
+    'retries': 3,
     'retry_delay': timedelta(minutes=5),
 }
 
@@ -18,7 +18,7 @@ production_dataset = 'ecommerce_newegg'
 gs_bucket = 'data-engineer-393307-cloud-data-lake'
 
 with DAG('newegg_cloud_data_lake_pipeline',
-    schedule_interval=timedelta(days=1),
+    schedule_interval="0 6 * * *",
     default_args=default_args) as dag:
 
     start_pipeline = DummyOperator(task_id = 'start_pipeline')
