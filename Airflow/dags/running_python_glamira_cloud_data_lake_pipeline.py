@@ -26,7 +26,7 @@ with DAG('glamira_cloud_data_lake_pipeline',
     load_products = GoogleCloudStorageToBigQueryOperator(
         task_id = 'load_glamira_products',
         bucket = gs_bucket,
-        source_objects = ['products-2023-08-31-converted.json'],
+        source_objects = ['summary-2023-08-31-converted.json'],
         destination_project_dataset_table = f'{project_id}:{staging_dataset}.summaries',
         schema_object = 'schema/glamira-schema.json',
         write_disposition='WRITE_TRUNCATE',
