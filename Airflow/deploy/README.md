@@ -70,11 +70,6 @@ kubectl create secret generic airflow-gke-git-secret \
 kubectl exec --stdin --tty airflow-webserver-588d844465-2gz6v -n airflow -- /bin/bash
 ```
 
-8. 
-```
-kubectl cp running_python_bash_and_dummy_operator.py airflow/airflow-webserver-649f97f5cb-k86m7:/opt/airflow/dags
-```
-
 9. Update with new values
 ```
 helm upgrade --install airflow apache-airflow/airflow -n airflow -f values.yaml
@@ -111,4 +106,17 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
     --role="roles/storage.objectUser"
+```
+
+13. Email configuration in values.yml
+```
+config:
+  email:
+    from_email: ""
+  smtp:
+    smtp_host: ""
+    smtp_user: ""
+    smtp_password: ""
+    smtp_port: ""
+    smtp_ssl: ""
 ```
