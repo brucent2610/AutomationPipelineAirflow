@@ -16,7 +16,7 @@ default_dag_args = {
 }
 
 with DAG(
-        'running_python_bash_and_dummy_operator',
+        'running_python_bash_and_dummy_operator_failed',
         schedule_interval=datetime.timedelta(days=1),
         default_args=default_dag_args) as dag:
 
