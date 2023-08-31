@@ -11,7 +11,7 @@ yesterday = datetime.datetime.combine(
 
 default_dag_args = {
     'start_date': datetime.datetime(2023, 8, 25),
-    'email': ['2dee79d649-52f9f5+1@inbox.mailtrap.io'],
+    'email': ['to@example.com'],
     'email_on_failure': True
 }
 
