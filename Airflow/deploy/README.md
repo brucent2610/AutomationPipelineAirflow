@@ -60,6 +60,8 @@ helm show values apache-airflow/airflow > values.yaml
 
 8. Create secrect git Sync
 ```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
 kubectl create secret generic airflow-gke-git-secret --from-file=gitSshKey=airflowsshkey -n airflow
 
 kubectl create secret generic airflow-gke-git-secret \
